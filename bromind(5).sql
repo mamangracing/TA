@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Jul 2021 pada 10.58
--- Versi server: 10.4.18-MariaDB
--- Versi PHP: 7.4.16
+-- Generation Time: 19 Jul 2021 pada 11.03
+-- Versi Server: 10.1.9-MariaDB
+-- PHP Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -51,9 +50,9 @@ INSERT INTO `access_menu` (`id`, `role_id`, `menu_id`) VALUES
 --
 
 CREATE TABLE `cart` (
-  `no_cart` int(20) NOT NULL,
-  `product_id` int(20) NOT NULL,
-  `total` varchar(20) NOT NULL,
+  `no_cart` varchar(20) NOT NULL,
+  `kd_user` varchar(6) DEFAULT NULL,
+  `product_id` varchar(20) DEFAULT NULL,
   `qty` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -61,22 +60,34 @@ CREATE TABLE `cart` (
 -- Dumping data untuk tabel `cart`
 --
 
-INSERT INTO `cart` (`no_cart`, `product_id`, `total`, `qty`) VALUES
-(3, 3, '', 3),
-(4, 1, '', 1);
+INSERT INTO `cart` (`no_cart`, `kd_user`, `product_id`, `qty`) VALUES
+('CT00003', 'CTR003', 'PRK000', 2);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contact`
+-- Struktur dari tabel `customer`
 --
 
-CREATE TABLE `contact` (
-  `no_pesan` int(20) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `customer` (
+  `customer_id` int(20) NOT NULL,
+  `customer_name` varchar(30) NOT NULL,
+  `customer_address` varchar(30) NOT NULL,
+  `no_hp` int(30) NOT NULL,
+  `email` varchar(20) DEFAULT NULL,
+  `role_id` int(2) DEFAULT NULL,
+  `password` varchar(30) DEFAULT NULL,
+  `is_active` int(3) DEFAULT NULL,
+  `date_created` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `customer_name`, `customer_address`, `no_hp`, `email`, `role_id`, `password`, `is_active`, `date_created`) VALUES
+(2, 'mamangracing', 'gak tau', 12345678, 'huft@gmail.com', 3, 'huft123', 1, '2021-07-16'),
+(3, 'cihuy', 'gak tau', 9877654, 'cihuy@gmail.com', 3, 'cihuy123', 1, '2021-07-17');
 
 -- --------------------------------------------------------
 
@@ -125,26 +136,19 @@ INSERT INTO `menu_sidebar` (`id`, `menu`) VALUES
 --
 
 CREATE TABLE `message` (
-  `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL,
+  `message_id` varchar(8) NOT NULL,
+  `kd_user` varchar(6) DEFAULT NULL,
   `comment` text NOT NULL,
-  `date_created` int(11) NOT NULL
+  `date_created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `message`
 --
 
-INSERT INTO `message` (`id`, `name`, `email`, `comment`, `date_created`) VALUES
-(1, 'Customer 1', 'customer1@email.com', 'Enak banget menu yang ada di BroMind, tempat nyaman, bisa buat kerja bareng temen, buat nyantai.', 1605858531),
-(2, 'Customer 2', 'customer2@gmail.com', 'Enak beud guys, bisa pesen online tinggal nunggu di rumah langsung nyampe deh.', 2005858531),
-(3, 'Customer 3', 'customer3@gmail.com', 'Aing nyoba ning kono, jian enak tenan. Kon rasakne dewe jal, lak gak percoyo karo aku. Enek rego, enek rupo.', 1805858531),
-(4, 'Customer 4', 'customer4@gmail.com', 'I always dolanan at the BroMind Cafe for sekedar nyangkruk lan ngopi with my konco2 from Meduro.', 12354366),
-(5, 'Customer 5', 'customer5@email.com', 'Beh, pokok e jos gandoss kotos2 sampek bledos, wedooss', 214252525),
-(6, 'Customer 6', 'customer6@email.com', 'Beh, pokok e jos gandoss kotos2 sampek bledos, wedooss', 224252525),
-(7, 'Customer 7', 'customer7@email.com', 'Enak banget menu yang ada di BroMind, tempat nyaman, bisa buat kerja bareng temen, buat nyantai.', 2005858531),
-(8, 'Customer 8', 'customer8@gmail.com', 'Enak beud guys, bisa pesen online tinggal nunggu di rumah langsung nyampe deh.', 2035858531);
+INSERT INTO `message` (`message_id`, `kd_user`, `comment`, `date_created`) VALUES
+('MSG01002', 'CTR002', 'hhhhhhh', '2021-07-18'),
+('MSG01003', 'CTR003', 'asd', '2021-07-18');
 
 -- --------------------------------------------------------
 
@@ -175,7 +179,7 @@ INSERT INTO `page` (`no`, `link`, `id`) VALUES
 --
 
 CREATE TABLE `product` (
-  `product_id` int(15) NOT NULL,
+  `product_id` varchar(6) NOT NULL,
   `product_name` varchar(40) DEFAULT NULL,
   `product_type` varchar(20) NOT NULL,
   `description` varchar(30) DEFAULT NULL,
@@ -188,18 +192,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_type`, `description`, `price`, `product_img`) VALUES
-(1, 'Kentang Goreng dadakan', 'Food', 'Kentang goreng harga bervarias', 8000, NULL),
-(2, 'Pisang Bakar Coklat ', 'Food', 'Pisang bakar rasa bisa mix', 10000, 'pisang bakar coklat.jpg '),
-(3, 'Pisang Bakar Coklat', 'Food', 'Pisang bakar rasa bisa mix', 9000, 'pisang bakar coklat.jpg'),
-(4, 'Pisang Bakar Keju', 'Food', 'Pisang bakar rasa bisa mix', 9000, 'pisang bakar keju.jpg'),
-(5, 'Pisang Bakar Plus Roti', 'Food', 'Pisang bakar rasa bisa mix', 12000, 'pisang bakar dan roti.jpg'),
-(6, 'Roti Bakar Coklat', 'Food', 'Roti bakar rasa bisa mix', 9000, 'roti bakar coklat.jpg'),
-(7, 'Roti Bakar Coklat Keju', 'Food', 'Roti bakar rasa bisa mix', 10000, 'roti bakar coklat keju.jpg'),
-(8, 'Roti Bakar Kacang', 'Food', 'Roti bakar rasa bisa mix', 9000, 'roti bakar kacang.jpg'),
-(9, 'Roti Bakar Kacang Coklat', 'Food', 'Roti bakar rasa bisa mix', 11000, 'roti bakar kacang coklat.jpg'),
-(10, 'Roti Bakar Kacang Keju', 'Food', 'Roti bakar rasa bisa mix', 11000, 'roti bakar keju kacang.jpeg'),
-(11, 'Roti Bakar Stroberi', 'Food', 'Roti bakar rasa bisa mix', 9000, 'roti bakar stroberi.jpg'),
-(12, 'Kopi Late', 'Baverage', 'Kopi dengan late', 20000, 'kopi late.jpg');
+('PRK000', 'asuuu', 'Food', 'asu lah', 10000, 'jus_alpukat2.jpeg'),
+('PRK001', 'Jus Alpukat', 'Baverage', 'anjay', 15000, 'jus_alpukat3.jpeg');
 
 -- --------------------------------------------------------
 
@@ -230,7 +224,7 @@ INSERT INTO `promo` (`id`, `promo_img`, `promo_name`, `promo_detail`, `period`) 
 --
 
 CREATE TABLE `report` (
-  `id` int(11) NOT NULL,
+  `report_id` varchar(6) NOT NULL,
   `food` varchar(30) DEFAULT NULL,
   `baverg` varchar(30) DEFAULT NULL,
   `on_income` int(11) NOT NULL,
@@ -238,15 +232,16 @@ CREATE TABLE `report` (
   `income` int(11) NOT NULL,
   `spending` int(11) NOT NULL,
   `profit` int(11) NOT NULL,
-  `date_created` int(11) NOT NULL
+  `date_created` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `report`
 --
 
-INSERT INTO `report` (`id`, `food`, `baverg`, `on_income`, `off_income`, `income`, `spending`, `profit`, `date_created`) VALUES
-(23, 'Roti Bakar Coklat Keju', 'Kopi Late', 20000, 10000, 30000, 10000, 20000, 1624332372);
+INSERT INTO `report` (`report_id`, `food`, `baverg`, `on_income`, `off_income`, `income`, `spending`, `profit`, `date_created`) VALUES
+('RPT00', 'asuuu', 'Jus Alpukat', 20000, 10000, 30000, 10000, 20000, '2021-07-18'),
+('RPT01', 'asuuu', 'Jus Alpukat', 20000, 10000, 30000, 5000, 25000, '2021-07-18');
 
 -- --------------------------------------------------------
 
@@ -256,7 +251,7 @@ INSERT INTO `report` (`id`, `food`, `baverg`, `on_income`, `off_income`, `income
 
 CREATE TABLE `role` (
   `id` int(11) NOT NULL,
-  `role` varchar(128) NOT NULL
+  `role` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -265,7 +260,8 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`id`, `role`) VALUES
 (1, 'Pemilik'),
-(2, 'Kasir');
+(2, 'Kasir'),
+(3, 'Customer');
 
 -- --------------------------------------------------------
 
@@ -308,20 +304,20 @@ CREATE TABLE `sub_menu` (
 
 INSERT INTO `sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
 (1, 1, 'Dashboard Leader', 'leader', 'fas fa-fw fa-tachometer-alt', 1),
-(2, 2, 'Dashboard Admin', 'admin', 'fas fa-fw fa-tachometer-alt', 1),
+(2, 2, 'Dashboard Admin', 'casier', 'fas fa-fw fa-tachometer-alt', 1),
 (9, 4, 'Information', 'website', 'fas fa-fw fa-info-circle', 1),
 (10, 4, 'Product', 'product', 'fas fa-fw fa-store', 1),
 (11, 4, 'Story', 'website/story', 'fas fa-fw fa-hourglass-half', 1),
-(12, 4, 'Message', 'website/message', 'fas fa-fw fa-comments', 1),
+(12, 1, 'Message', 'website/message', 'fas fa-fw fa-comments', 1),
 (13, 4, 'Promo', 'website/promo', 'fas fa-fw fa-percentage', 1),
 (14, 4, 'Report', 'report', 'fas fa-fw fa-chart-line', 1),
 (15, 1, 'Employees', 'leader/employees', 'fas fa-fw fa-users', 1),
 (16, 1, 'My Profile', 'leader/profile', 'fas fa-fw fa-user', 1),
 (17, 1, 'Edit Profile', 'leader/editprofile', 'fas fa-fw fa-user-edit', 1),
 (18, 1, 'Change Password', 'leader/changepassword', 'fas fa-fw fa-key', 1),
-(19, 2, 'My Profile', 'admin/profile', 'fas fa-fw fa-user', 1),
-(20, 2, 'Edit Profile', 'admin/editprofile', 'fas fa-fw fa-user-edit', 1),
-(21, 2, 'Change Password', 'admin/changepassword', 'fas fa-fw fa-key', 1);
+(19, 2, 'My Profile', 'casier/profile', 'fas fa-fw fa-user', 1),
+(20, 2, 'Edit Profile', 'casier/editprofile', 'fas fa-fw fa-user-edit', 1),
+(21, 2, 'Change Password', 'casier/changepassword', 'fas fa-fw fa-key', 1);
 
 -- --------------------------------------------------------
 
@@ -330,23 +326,27 @@ INSERT INTO `sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VA
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `kd_user` varchar(6) NOT NULL,
   `name` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
   `image` varchar(30) NOT NULL,
   `role_id` int(11) NOT NULL,
   `is_active` int(1) NOT NULL,
-  `date_created` date NOT NULL
+  `date_created` date NOT NULL,
+  `address` varchar(20) DEFAULT NULL,
+  `no_hp` int(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `password`, `image`, `role_id`, `is_active`, `date_created`) VALUES
-(1, 'Agung Prawoto', 'putrabina0@gmail.com', 'mamangracing', 'd8nf2xt-bcca85ee-e56a-4e0f-86c', 1, 1, '2021-07-01'),
-(2, 'Malik Ardhiansyah', 'malikardhi@gmail.com', 'malikjos', 'default.jpg', 2, 1, '2021-07-01');
+INSERT INTO `user` (`kd_user`, `name`, `email`, `password`, `image`, `role_id`, `is_active`, `date_created`, `address`, `no_hp`) VALUES
+('CTR002', 'boby', 'boby@gmail.com', 'boby123', '', 3, 1, '2021-07-17', 'gak tau', 9876544),
+('CTR003', 'satrio', 'satrio@gmail.com', 'satrio123', '', 3, 1, '2021-07-17', 'au elap', 123456),
+('KSR001', 'Malik Ardhiansyah', 'malikardhi@gmail.com', 'malikjos', 'default.jpg', 2, 1, '2021-07-01', NULL, NULL),
+('LDR001', 'Agung', 'putrabina0@gmail.com', 'mamangracing', 'd8nf2xt-bcca85ee-e56a-4e0f-86c', 1, 1, '2021-07-01', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -382,178 +382,145 @@ INSERT INTO `website` (`id`, `logo`, `head`, `loc_img`, `location`, `maps`, `fb`
 --
 
 --
--- Indeks untuk tabel `access_menu`
+-- Indexes for table `access_menu`
 --
 ALTER TABLE `access_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `cart`
+-- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`no_cart`);
 
 --
--- Indeks untuk tabel `contact`
+-- Indexes for table `customer`
 --
-ALTER TABLE `contact`
-  ADD PRIMARY KEY (`no_pesan`);
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customer_id`);
 
 --
--- Indeks untuk tabel `featured`
+-- Indexes for table `featured`
 --
 ALTER TABLE `featured`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `menu_sidebar`
+-- Indexes for table `menu_sidebar`
 --
 ALTER TABLE `menu_sidebar`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `message`
+-- Indexes for table `message`
 --
 ALTER TABLE `message`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`message_id`);
 
 --
--- Indeks untuk tabel `page`
+-- Indexes for table `page`
 --
 ALTER TABLE `page`
   ADD PRIMARY KEY (`no`);
 
 --
--- Indeks untuk tabel `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`);
 
 --
--- Indeks untuk tabel `promo`
+-- Indexes for table `promo`
 --
 ALTER TABLE `promo`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `report`
+-- Indexes for table `report`
 --
 ALTER TABLE `report`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`report_id`);
 
 --
--- Indeks untuk tabel `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `story`
+-- Indexes for table `story`
 --
 ALTER TABLE `story`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `sub_menu`
+-- Indexes for table `sub_menu`
 --
 ALTER TABLE `sub_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`kd_user`),
+  ADD UNIQUE KEY `kd_user` (`kd_user`);
 
 --
--- Indeks untuk tabel `website`
+-- Indexes for table `website`
 --
 ALTER TABLE `website`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `access_menu`
+-- AUTO_INCREMENT for table `access_menu`
 --
 ALTER TABLE `access_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
--- AUTO_INCREMENT untuk tabel `cart`
+-- AUTO_INCREMENT for table `customer`
 --
-ALTER TABLE `cart`
-  MODIFY `no_cart` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+ALTER TABLE `customer`
+  MODIFY `customer_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT untuk tabel `contact`
---
-ALTER TABLE `contact`
-  MODIFY `no_pesan` int(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `featured`
+-- AUTO_INCREMENT for table `featured`
 --
 ALTER TABLE `featured`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
--- AUTO_INCREMENT untuk tabel `menu_sidebar`
+-- AUTO_INCREMENT for table `menu_sidebar`
 --
 ALTER TABLE `menu_sidebar`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
--- AUTO_INCREMENT untuk tabel `message`
---
-ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT untuk tabel `promo`
+-- AUTO_INCREMENT for table `promo`
 --
 ALTER TABLE `promo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT untuk tabel `report`
---
-ALTER TABLE `report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT untuk tabel `role`
+-- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT untuk tabel `story`
+-- AUTO_INCREMENT for table `story`
 --
 ALTER TABLE `story`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT untuk tabel `sub_menu`
+-- AUTO_INCREMENT for table `sub_menu`
 --
 ALTER TABLE `sub_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
 --
--- AUTO_INCREMENT untuk tabel `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `website`
+-- AUTO_INCREMENT for table `website`
 --
 ALTER TABLE `website`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

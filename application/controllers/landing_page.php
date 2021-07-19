@@ -122,13 +122,13 @@ class landing_page extends CI_Controller
 			$qty = $this->input->get('qty');
 			$user = $this->session->kd_user; 
 
-			$cart = $this->bro->get_where('cart','product_id',$product_id);
+			$cart = $this->bro->get('cart');
 
-			$no_cart = $this->db->query('SELECT * FROM cart')->result_array();
+			//$no_cart = $this->db->query('SELECT * FROM cart')->result_array();
 			$kd_cart = "CT";
 			
 			
-			if($cart != null){
+			if($cart[0]->kd_user == $this->session->kd_user){
 
 				$data['qty'] = $qty + $cart[0]->qty;
 
