@@ -1,0 +1,221 @@
+.bg-transparent{
+	
+}
+
+.discount{
+	position: absolute;
+	left: -7%;
+	top: -10%;
+}
+.carousel-item{
+	height: 660px;
+}
+.follow_us{
+	margin-left: -93%;
+	top:31%;
+}
+.follow_us img{
+	width: 1.5%;
+}
+.facilities{
+	font-size: 36px;
+}
+.story .isi{
+	font-size: 18px;
+}
+.harga{
+	width: 129px;
+	height: 41px;
+	background-color: #C62121;
+	position: absolute;
+	top:-5%;
+	left:59%;
+}
+.harga h5{
+	color:white;
+	text-align: center;
+	margin-top:5%;
+}
+.card{
+	box-shadow: 0.2rem 0.4rem 1rem rgba(0,0,0,0.15);
+}
+.garis{
+	margin-left:2%;
+	margin-top:-1%;
+}
+.background_merah{
+	background-color: #C62121;
+}
+.informati{
+	margin-left: 7%;
+}
+.icon-photo{
+	margin-top:1px;
+}
+
+/* logo bromind dan tombol */
+.bromind img{
+	margin-left: 29%;
+	margin-top: -77%;
+}
+.tombol img{
+	margin-left: 386%;
+	margin-top: -256%;
+}
+
+/* bagian tangan kanan dan kiri */
+.kopi2 img{
+	margin-left: -46%;
+}
+.kopi2{
+	top: -8%;
+}
+.kopi1 img{
+	margin-left: 16%;
+}
+.kopi1{
+	top: 19%;
+}
+
+/*screen dekstop*/
+@media only screen and (min-width: 1100px){
+
+	/*margin dekstop*/
+	.margin-top-d-1{
+		margin-top: 1rem;
+	}
+	.margin-top-d{
+		margin-top: 3.5rem;
+	}
+	.margin-left-d{
+		margin-left: auto !important;
+	}
+}
+
+/*screen mobile hp ladscape*/
+@media only (max-width: 900px) and (orientation: landscape){
+	
+	/*follow us*/
+	.follow_us img{
+		margin-left: -10%;
+	}
+
+	/* tampila hero bromind */
+	.tombol img{
+		margin-top: -157%;
+		margin-left: 34%;
+	}
+
+	.bromind img{
+		margin-left: 7%;
+		margin-top: -188%;
+	}
+
+	/*poto harga*/
+	.harga{
+		left: 56.5%;
+	}
+
+	/*membuat teks tengah pada promo*/
+	.center{
+		margin: auto;
+	}
+
+	/*poto promo mobile*/
+	.discount-m{
+		top: -7%;
+		left: -10%;
+	}
+
+	/* margin top */
+	.margin-top{
+		margin-top: 2rem;
+	}
+	.margin-top-1{
+		margin-top: 1rem;
+	}
+	.margin-bottom{
+		margin-bottom: 1.5rem !important;
+	}
+
+	/*posisi gambar ditengah*/
+	.margin-auto{
+		margin: auto;
+	}
+}
+
+/*screen mobile hp potrait*/
+@media only screen and (max-width: 500px ){
+	
+	/* follow us */
+	.follow_us{
+		margin-top: -41%;
+	}
+
+	/*font mobile fisilatas*/
+	.facilities{
+		font-size: 26px;
+	}
+
+	/*jarak antara hero dan fisilitas*/
+	.mobile{
+		height: 120px;
+	}
+	/*poto promo mobile*/
+	.discount-m{
+		top: -6%;
+		left: -11%;
+	}
+	
+	/* harga pada best menu */
+	.harga{
+		margin-left: -2.5%;
+	}
+	
+	/*margi lef*/
+	.margin-left{
+		margin-left: 1.3rem;
+	}
+
+	/* margin top */
+	.margin-top{
+		margin-top: 3rem;
+	}
+
+	/* logo pada navbar */
+	.logo-bromind{
+		width: 14% !important;
+	}
+
+	/* bagian tangan kiri */
+	.kopi1 img{
+		margin-left: 13%;
+	}
+
+	.kopi1{
+		top: 7.1%;
+		overflow: hidden;
+	}
+
+	/* bagian tangan kanan */
+	.kopi2 img{
+		margin-left: -22%;
+		margin-top: -20%;
+	}
+
+	.kopi2{
+		top : 7.1%;
+		overflow: hidden;
+	}
+
+	/* logo bromind dan tombol */
+	.bromind img{
+		margin-left: 9%;
+		margin-top: -432%;
+	}
+	.tombol img{
+		margin-left: 48%;
+		margin-top: -405%;
+		width: 32%;
+	}
+}
