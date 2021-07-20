@@ -17,7 +17,7 @@ function is_logged_in()
             'menu_id' => $menu_id
         ]);
 
-        if ($userAccess->num_rows() < 1) {
+        if ($ci->session->role_id == 3) {
             redirect('auth/blocked');
         }
     }
@@ -40,7 +40,7 @@ function menu_logged_in()
             'menu_id' => $menu_id
         ]);
 
-        if ($role_id == 2) {
+        if ($role_id == 2 || $role_id == 3) {
             redirect('auth/blocked');
         }
     }

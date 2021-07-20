@@ -2,6 +2,12 @@
 
 class Product_model extends CI_Model
 {
+
+    public function update($table = null, $data = null, $where = null)
+    {
+        return $this->db->update($table, $data, $where);
+    }
+
     public function get_product()
     {
         return $this->db->get('product')->result_array();
@@ -42,11 +48,6 @@ class Product_model extends CI_Model
     public function total_product()
     {
         return $this->db->get('product')->num_rows();
-    }
-
-    public function update($table = null, $data = null, $where = null, $id = null)
-    {
-       return $this->db->update($table, $data, array($where => $id));
     }
 
     public function delete($id)

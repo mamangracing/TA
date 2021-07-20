@@ -5,6 +5,8 @@ class Product extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        is_logged_in();
         $this->load->model('product_model');
         $this->load->model('web_model');
     }
@@ -127,7 +129,7 @@ class Product extends CI_Controller
             $this->db->insert('product', $data);
 
             $this->session->set_flashdata('message', 
-            '<div class="alert alert-success" role="alert">
+            '<div class="alert alert-success text-center" role="alert">
                 Success to add new product!
             </div>');
             redirect('product');
@@ -148,7 +150,7 @@ class Product extends CI_Controller
         $this->form_validation->set_rules('description', 'Description', 'required|trim', array('
             required' => 'Deskripsi harus diisi !'));
 
-        $this->form_validation->set_rules('product_img','File','required|trim');
+        //$this->form_validation->set_rules('product_img','File','required|trim');
 
         if($this->form_validation->run() == false){
 
@@ -192,31 +194,51 @@ class Product extends CI_Controller
         
         // cek jika ada gambar yang akan diupload
 
-        $config['upload_path'] = './assets/bromind_style/img-product/';
-        $config['allowed_types'] = 'gif|png|jpg|jpeg';
-        $config['max_size'] = '5120'; // 5MB
+        $upload_image = $_FILES['product_img']['name'];
 
-        $this->load->library('upload', $config);
+        if($upload_image){
 
-        // Proses upload
-        if (!$this->upload->do_upload('product_img')) {
+            $config['upload_path'] = './assets/img/product/';
+            $config['allowed_types'] = 'gif|png|jpg|jpeg';
+            $config['max_size'] = '5120'; // 5MB
 
-            
-            // $old_image = $data['product'][0]['product_img'];
+            $this->load->library('upload', $config);
 
-            // if ($old_image != 'product.png') {
-            //     // Hapus file foto lama 
-            //     //unlink(FCPATH . 'assets/bromind_style/img-product/' . $old_image);
-            //    $upload = $this->upload->data();
-            //    $new_image = $upload['file_name'];
-            // }
+            // Proses upload
+            if ($this->upload->do_upload('product_img')) {
+                
+                $old_image = $data['product'][0]['product_img'];
 
-            // $new_image = array('upload_data' => $this->upload->data('file_name'));
-            //$this->db->set('product_img', $new_image);
+                if ($old_image != 'product.png') {
+                    // Hapus file foto lama 
+                    unlink(FCPATH . 'assets/img/product/' . $old_image);
+                   // $upload = $this->upload->data();
+                   // $new_image = $upload['file_name'];
+                }
 
-        } else {
-            echo $this->upload->display_errors();
+                $new_image = array('upload_data' => $this->upload->data('file_name'));
+                $this->db->set('product_img', $new_image);
+
+            } else {
+                echo $this->upload->display_errors();
+            }
         }
+
+        // if ($upload_image) {
+        //     $config['upload_path'] = './assets/img/product/';
+        //     $config['allowed_types'] = 'gif|png|jpg|jpeg';
+        //     $config['max_size'] = '5120'; // 5MB
+
+        //     $this->load->library('upload', $config);
+
+        //     // Proses upload
+        //     if ($this->upload->do_upload('product_img')) {
+        //         $new_image = $this->upload->data('file_name');
+        //         $this->db->set('product_img', $new_image);
+        //     } else {
+        //         echo $this->upload->display_errors();
+        //     }
+        // }
 
         $product_id = $this->input->post('product_id');
         $product_type = $this->input->post('product_type');
@@ -233,7 +255,7 @@ class Product extends CI_Controller
             'description' => $description
         );
 
-        var_dump($_FILES['product_img']['name']!="");
+        var_dump($product_img);
 
         // $this->product_model->update('product', $data, 'product_id', $product_id);
 

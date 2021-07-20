@@ -20,7 +20,7 @@
                                 <h5 class="card-title"><?= $user['name']; ?></h5>
                                 <p class="card-text"><?= $user['email']; ?></p>
                                 <p class="card-text"><small class="text-muted">
-                                    Joined at <?= date('d F Y', $user['date_created']); ?>
+                                    Joined at <?= $user['date_created']; ?>
                                 </small></p>
                             </div>
                             </div>

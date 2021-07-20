@@ -11,7 +11,7 @@
                             <div class="col-lg">
                                 <div class="py-5 px-4">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Create Account Customer!</h1>
                                     </div>
                                     <form method="post" action="<?= base_url('auth/registration'); ?>">
                                         <div class="form-group">

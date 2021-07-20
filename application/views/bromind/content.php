@@ -52,7 +52,7 @@
 			<div class="col-sm-12 col-xl-6 col-md-5" id="story">
 				<div class="col-xl-12">
 					<h2 class="text-dark"><b>Story</b></h2>
-					<font class="text-dark isi">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy tex<br>t ever since the 1500s, when an unknown printer took a galley of type and<br>scrambled it to make a type specimen book. It </font>
+					<font class="text-dark isi"><?= $story[0]->p1;?></font>
 				</div>
 				<div class="col-xl-4 col-5 col-sm-3 mt-3 col-md-5 margin-left-d" id="button-story">
 					<a href="<?= base_url('landing_page/story');?>">
@@ -77,7 +77,7 @@
 					<div class="col-xl-12 col-md-7 col-12 produk margin-auto">
 						<div class="harga"><h5 class="text-center mt-1 text-white">Rp <?= $p->price;?></h5></div>
 						<div class="image-prduk margin-auto">
-							<img src="<?= base_url('assets/');?>bromind_style/img-product/<?= $p->product_img;?>" class="w-100">
+							<img src="<?= base_url('assets/');?>img/product/<?= $p->product_img;?>" class="w-100">
 						</div>
 						<div class="card-body mt-4 col-12 text-center col-md-12 col-xl-6 margin-auto" id="name_produk">
 							<h3 class="noto-sans6"><?= $p->product_name;?></h3>

@@ -1304,6 +1304,11 @@
 
 @media screen and (min-width: 1200px) {
     
+    .ovo{
+        margin-top: 0;
+        padding-bottom: 8%;
+    }
+
     .remove{
         margin-left: -3%;
     }
@@ -1369,7 +1374,7 @@
 
     /*daftar harga*/
     .harga{
-        left: 34.6%;
+        left: 57.2%;
         width: 36%;
     }
 

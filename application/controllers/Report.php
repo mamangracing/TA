@@ -5,6 +5,8 @@ class Report extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        is_logged_in();
         $this->load->model('report_model');
         $this->load->model('product_model');
         $this->load->model('web_model');
@@ -163,6 +165,7 @@ class Report extends CI_Controller
         $spending = $this->input->post('spending');
         $income = $on_income + $off_income;
         $profit = $income - $spending;
+
         $data = array(
             'food' => $this->input->post('fav_food'),
             'baverg' => $this->input->post('fav_baverg'),
@@ -180,7 +183,7 @@ class Report extends CI_Controller
             'report_id' => $this->input->post('id')
         );
         
-        $this->product_model->update($where,$data,'report');
+        $this->product_model->update('report', $data, $where);
 
         $this->session->set_flashdata('message', 
         '<div class="alert alert-success" role="alert">

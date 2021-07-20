@@ -15,7 +15,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="product_img" name="product_img">
+                                                    <input type="file" class="custom-file-input" id="product_img" name="product_img" value="<?= $product_img;?>">
                                                     <label class="custom-file-label" for="product_img">Choose file</label>
                                                     <?= form_error('product_img','<small class="text-danger pl-3">','</small>');?>
                                                 </div>

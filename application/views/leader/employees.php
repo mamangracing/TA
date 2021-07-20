@@ -23,6 +23,7 @@
                                         <th scope="col">Full Name</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Position</th>
                                         <th scope="col">Joined</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -37,11 +38,11 @@
                                         </td>
                                         <td class="align-middle"><?= $em['name']; ?></td>
                                         <td class="align-middle"><?= $em['email']; ?></td>
-                                        <td class="align-middle"></td>
+                                        <td class="align-middle"><?= $em['is_active'] == 1 ? 'Aktif' : 'Tidak Aktif' ?></td>
+                                        <td class="align-middle"><?= $em['role_id'] == 2 ? 'Kasir' : 'Customer' ?></td>
+                                        <td class="align-middle"><?= $em['date_created']; ?></td>
                                         <td class="align-middle">
-                                            <?= $em['date_created']; ?></td>
-                                        <td class="align-middle">
-                                            <a href="<?= base_url('leader/delemployee/'.$em['id']); ?>" class="badge badge-danger">Delete</a>
+                                            <a href="<?= base_url('leader/delemployee/'.$em['kd_user']); ?>" class="badge badge-danger">Delete</a>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>

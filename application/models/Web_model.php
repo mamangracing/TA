@@ -33,7 +33,7 @@ class Web_model extends CI_Model
     public function get_message($limit, $start)
     {
         $this->db->select("*");
-        $this->db->join('customer','message.customer_id = customer.customer_id');
+        $this->db->join('user','message.kd_user = user.kd_user');
         $this->db->order_by('message.date_created', 'DESC');
         return $this->db->get('message', $limit, $start)->result_array();
     }

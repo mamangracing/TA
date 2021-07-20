@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scaleble=no" name="viewport">
     <title>Bromind Cafe | <?php echo $judul;?></title>
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/');?>bootstrap-4.5.0/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/');?>bromind_style/css/custom.css?v=4.0">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/');?>bromind_style/css/custom.css?v=3.0">
     <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url('assets/');?>bromind_style/img/Logo Bromind Cafe.png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="<?= base_url('assets/');?>bootstrap-4.5.0/css/bootstrap.min.css">
@@ -95,7 +95,17 @@
                         <?php if($this->session->role_id == 3) {?> 
                             <!-- <a class="nav-link dropdown-toggle" href="#" id="customerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="mr-2 d-none d-lg-inline small">nama</span>
                             </a> -->
-                            <a href="<?= base_url('auth/logout');?>">Log Out</a>
+                            <div class="dropdown">
+                                <a class="btn btn-transparent text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?= $this->session->name; ?>
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
                             <?php
 
                             } else { ?>

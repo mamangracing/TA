@@ -18,7 +18,7 @@
 						<div class="form-group col-xl-12 mt-5">
 							<div class="row list-cart">
 								<div class="col-xl-6 col-8 cart-image">
-									<img src="<?= base_url('assets/');?>bromind_style/img-product/<?= $c->product_img;?>" class="w-100">
+									<img src="<?= base_url('assets/');?>img/product/<?= $c->product_img;?>" class="w-100">
 								</div>
 								<div class="col-xl-5 col-11" id="produk_name">
 									<div class="produk_title mt-3"><?= $c->product_name;?></div>
@@ -80,7 +80,7 @@
 					<div class="modal-body col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 margin-auto">
 						<div class="row">
 							<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-								<img src="<?= base_url('assets/');?>bromind_style/img-product/<?= $p->product_img;?>" class="w-100">
+								<img src="<?= base_url('assets/');?>img/product/<?= $p->product_img;?>" class="w-100">
 							</div>
 							<form action="<?= base_url('landing_page/save_cart');?>" type="get" class="order col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 bg-transparent">
 								<div class="form-group product">

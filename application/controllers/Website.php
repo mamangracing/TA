@@ -5,6 +5,8 @@ class Website extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        is_logged_in();
         $this->load->model('web_model');
         $this->load->model('product_model');
     }

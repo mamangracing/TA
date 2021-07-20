@@ -18,6 +18,7 @@ class landing_page extends CI_Controller
 		$data['page'] = $this->bro->get('page');
 		$data['promo'] = $this->bro->get('promo');
 		$data['website'] = $this->bro->get('website');
+		$data['story'] = $this->bro->get('story');
 		$data['product'] = $this->bro->new_product();
 		$data['cart'] = $this->bro->cart($kd_user);
 		$data['total_cart'] = $this->bro->total_cart();
@@ -35,6 +36,7 @@ class landing_page extends CI_Controller
 		$data['page'] = $this->bro->get('page');
 		$data['website'] = $this->bro->get('website');
 		$data['product'] = $this->bro->get('product');
+		$data['story'] = $this->bro->get('story');
 		$data['cart'] = $this->bro->cart($kd_user);
 		$data['total_cart'] = $this->bro->total_cart();
 

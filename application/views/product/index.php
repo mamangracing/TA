@@ -64,13 +64,13 @@
                                     <tr>
                                         <th class="align-middle" scope="row"><?= ++$start; ?></th>
                                         <td class="align-middle">
-                                            <img src="<?= base_url('assets/bromind_style/img-product/') . $pd['product_img']; ?>" 
+                                            <img src="<?= base_url('assets/img/product/') . $pd['product_img']; ?>" 
                                             class="img-thumbnail" style="height: 80px; max-width: 80px;" />
                                         </td>
                                         <td class="align-middle"><?= $pd['product_name']; ?></td>
                                         <td class="align-middle"><?= 'Rp ' . number_format($pd['price'],0,"","."); ?></td>
                                         <td class="align-middle"><?= $pd['product_type']; ?></td>
-                                        <td class="text-left"><?= $pd['description']; ?></td>
+                                        <td class="align-middle"><?= $pd['description']; ?></td>
                                         <?= $this->session->role_id == 1 ? '<td class="align-middle">
                                             <a href="product/edit/'.$pd['product_id'].'" class="badge badge-info">Edit</a>
                                             <a href="product/delete/'.$pd['product_id'].'" class="badge badge-danger">Delete</a></td>' : ''?>

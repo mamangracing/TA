@@ -33,12 +33,12 @@
 		    <div class="row col-xl-12" id="all-product">
 		    	<?php
 			    	foreach($product as $p) :?>
-						<div class="form-group col-12 col-xl-4 col-md-6 mt-5 daftar-menu">
+						<div class="form-group col-12 col-xl-3 col-md-6 mt-5 daftar-menu">
 							<div class="col-xl-12 col-md-12 col-12 produk">
 								<div class="harga"><h5 class="text-center mt-1 text-white">Rp <?= $p->price;?></h5></div>
 								<div class="image-prduk margin-auto">
 									<a href="#" data-toggle="modal" data-target="#singleOrder<?= $p->product_id;?>">
-										<img src="<?= base_url('assets/');?>bromind_style/img-product/<?= $p->product_img;?>" class="w-100">
+										<img src="<?= base_url('assets/');?>img/product/<?= $p->product_img;?>" class="w-100">
 									</a>
 									<div class="card-body mt-4 col-12 text-center col-md-12 col-xl-10" id="name_produk">
 										<h3 class="noto-sans6"><?= $p->product_name;?></h3>

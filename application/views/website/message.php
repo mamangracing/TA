@@ -7,7 +7,7 @@
                         <div class="col-lg-4">
                             <div class="card shadow-sm mb-3 p-3">
                                 <div class="card-body text-dark">
-                                    <h5 class="card-title"><?= $msg['customer_name']; ?></h5>
+                                    <h5 class="card-title"><?= $msg['name']; ?></h5>
                                     <h5 class="card-title"><?= $msg['email']; ?></h5>
                                     <p class="card-text">
                                         <i>"<?= $msg['comment'] ?>"</i>
