@@ -10,7 +10,7 @@ class Report_model extends CI_Model
 
     public function today_reports()
     {
-        return $this->db->query("SELECT * FROM report ORDER BY date_created DESC LIMIT 1")->row_array();
+        return $this->db->query("SELECT SUM(spending) as spending, SUM(income) as income, SUM(off_income) as off_income, SUM(on_income) as on_income, food, baverg FROM report ORDER BY date_created DESC LIMIT 1")->row_array();
     }
 
     public function get_reports($limit, $start)

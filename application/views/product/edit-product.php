@@ -5,7 +5,7 @@
                         <div class="card p-4 col-lg-8 shadow-sm rounded mx-auto text-dark">
                             <!-- Page Heading -->
                             <h1 class="h3 mb-5 text-gray-800 text-center">Edit <?= $title; ?></h1>
-                            <form action="<?= base_url('product/edit/'.$product_id);?>" method="POST">
+                            <form action="<?= base_url('product/edit/'.$product_id);?>" method="POST" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-sm-3">Picture</div>
                                     <div class="col-sm-9">

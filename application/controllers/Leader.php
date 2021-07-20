@@ -27,7 +27,7 @@ class Leader extends CI_Controller
         // var_dump($data['fav_food']);
         // die;
         // this_day();
-
+       
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

@@ -3,9 +3,9 @@
 class Product_model extends CI_Model
 {
 
-    public function update($table = null, $data = null, $where = null)
+    public function update($table = null, $data = null, $where = null, $id = null)
     {
-        return $this->db->update($table, $data, $where);
+        return $this->db->update($table, $data, array($where => $id));
     }
 
     public function get_product()

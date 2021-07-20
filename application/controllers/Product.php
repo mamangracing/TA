@@ -212,33 +212,15 @@ class Product extends CI_Controller
                 if ($old_image != 'product.png') {
                     // Hapus file foto lama 
                     unlink(FCPATH . 'assets/img/product/' . $old_image);
-                   // $upload = $this->upload->data();
-                   // $new_image = $upload['file_name'];
-                }
 
-                $new_image = array('upload_data' => $this->upload->data('file_name'));
-                $this->db->set('product_img', $new_image);
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('product_img', $new_image);
+                }
 
             } else {
                 echo $this->upload->display_errors();
             }
         }
-
-        // if ($upload_image) {
-        //     $config['upload_path'] = './assets/img/product/';
-        //     $config['allowed_types'] = 'gif|png|jpg|jpeg';
-        //     $config['max_size'] = '5120'; // 5MB
-
-        //     $this->load->library('upload', $config);
-
-        //     // Proses upload
-        //     if ($this->upload->do_upload('product_img')) {
-        //         $new_image = $this->upload->data('file_name');
-        //         $this->db->set('product_img', $new_image);
-        //     } else {
-        //         echo $this->upload->display_errors();
-        //     }
-        // }
 
         $product_id = $this->input->post('product_id');
         $product_type = $this->input->post('product_type');
@@ -255,15 +237,13 @@ class Product extends CI_Controller
             'description' => $description
         );
 
-        var_dump($product_img);
+        $this->product_model->update('product', $data, 'product_id', $product_id);
 
-        // $this->product_model->update('product', $data, 'product_id', $product_id);
-
-        // $this->session->set_flashdata('message', 
-        // '<div class="alert alert-success" role="alert">
-        //     Product has been modified!
-        // </div>');
-        // redirect('product');
+        $this->session->set_flashdata('message', 
+        '<div class="alert alert-success text-center" role="alert">
+            Product has been modified!
+        </div>');
+        redirect('product');
     }
 
     public function delete()
