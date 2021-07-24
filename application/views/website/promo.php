@@ -22,6 +22,7 @@
                                         <th scope="col">Promo Name</th>
                                         <th scope="col">Promo Details</th>
                                         <th scope="col">Period</th>
+                                        <th scope="col">Status</th>
                                         <?= $this->session->role_id == 1 ? '<th scope="col">Action</th>' : ''?>
                                     </tr>
                                 </thead>
@@ -37,6 +38,7 @@
                                         <td><?= $pm['promo_name']; ?></td>
                                         <td><?= $pm['promo_detail']; ?></td>
                                         <td><?= $pm['period']; ?></td>
+                                        <td><?= $pm['status'] == 1 ? 'Aktif' : 'Tidak aktif' ?></td>
                                         <?= $this->session->role_id == 1 ? '<td><a href="editpromo/'.$pm['id'].'" class="badge badge-info">Edit</a></td>' : ''?>
                                     </tr>
                                     <?php endforeach?>

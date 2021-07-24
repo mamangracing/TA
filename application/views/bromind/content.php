@@ -98,42 +98,30 @@
 <section class="jumbotron jumbotron-fluid bg-transparent mt-5" id="Promo">
 	<div class="container mt-5">
 		<div class="row">
-			<div class="form-group col-sm-9 col-xl-6 mt-3 col-md-7 margin-auto margin-bottom">
-				<div class="card">
-					<div class="col-xl-5 discount discount-m">
-						<img src="<?= base_url('assets/');?>bromind_style/img/label-promo.png">
-					</div>
-					<div class="row p-5">
-						<div class="col-xl-5 col-6 col-sm-6 col-md-6 m-auto gopay">
-							<img src="<?= base_url('assets/');?>bromind_style/img/<?= $promo[0]->promo_img;?>" class="icon-photo w-100">
+			<?php
+			foreach ($promo as $p ) :?>
+	
+				<div class="form-group col-sm-9 col-xl-6 mt-3 col-md-7 margin-auto margin-bottom">
+					<div class="card">
+						<div class="col-xl-5 discount discount-m">
+							<img src="<?= base_url('assets/');?>bromind_style/img/label-promo.png">
 						</div>
-						<div class="col-xl-7 col-12 gopay">
-							<h4><b><?= $promo[0]->promo_name;?></b></h4>
-							<?= $promo[0]->promo_detail;?>
-							<br><br>
-							<b><?= $promo[0]->period;?></b>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="form-group col-xl-6 mt-3 col-sm-9 col-md-7 margin-auto">
-				<div class="card">
-					<div class="col-xl-5 discount discount-m">
-						<img src="<?= base_url('assets/');?>bromind_style/img/label-promo.png">
-					</div>
-					<div class="row p-5">
-						<div class="col-xl-3 col-4 col-sm-4 col-md-4 m-auto ovo">
-							<img src="<?= base_url('assets/');?>bromind_style/img/<?= $promo[1]->promo_img;?>" class="w-100">
-						</div>
-						<div class="col-xl-7 col-12 ovo">
-							<h4><b><?= $promo[1]->promo_name;?></b></h4>
-							<?= $promo[1]->promo_detail;?>
-							<br><br>
-							<b><?= $promo[0]->period;?></b>
+						<div class="row p-5">
+							<div class="col-xl-5 col-6 col-sm-6 col-md-6 m-auto gopay">
+								<img src="<?= base_url('assets/');?>bromind_style/img/<?= $p->promo_img;?>" class="icon-photo w-100">
+							</div>
+							<div class="col-xl-7 col-12 gopay">
+								<h4><b><?= $p->promo_name;?></b></h4>
+								<?= $p->promo_detail;?>
+								<br><br>
+								<b><?= $p->period;?></b>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+
+				<?php
+			endforeach ?>
 		</div>
 	</div>
 </section>

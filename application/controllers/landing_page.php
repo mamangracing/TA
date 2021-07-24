@@ -16,7 +16,7 @@ class landing_page extends CI_Controller
 		$data['isi'] = 'bromind/content';
 		$data['modal'] = 'bromind/asset/modal';
 		$data['page'] = $this->bro->get('page');
-		$data['promo'] = $this->bro->get('promo');
+		$data['promo'] = $this->bro->get_where('promo','status',1);
 		$data['website'] = $this->bro->get('website');
 		$data['story'] = $this->bro->get('story');
 		$data['product'] = $this->bro->new_product();
@@ -160,7 +160,7 @@ class landing_page extends CI_Controller
 			}
 
 		} else {
-			$this->session->set_flashdata('pesan','<div class="alert alert-message alert-danger text-center" role="alert">Anda belum login !!</div>');
+			$this->session->set_flashdata('pesan','<div class="alert alert-message alert-danger text-center" role="alert">Anda harus login terlebih dahulu</div>');
 
 			redirect('landing_page/menu');
 		}
@@ -179,23 +179,33 @@ class landing_page extends CI_Controller
 
 	public function message()
 	{
-		$message = $this->db->query('SELECT * FROM message')->result_array();
-		
-		$kd_message = "MSG";
-		$kd_user = substr($this->session->kd_user, 3);
-		$no_urut = count($message);
+		if($this->session->role_id == 3){
 
-		$kode = $kd_message.sprintf("%02s", $no_urut).$kd_user;
+			$message = $this->db->query('SELECT * FROM message')->result_array();
+			
+			$kd_message = "MSG";
+			$kd_user = substr($this->session->kd_user, 3);
+			$no_urut = count($message);
 
-		$data['message_id'] = $kode;
-		$data['kd_user'] = $this->session->kd_user;
-		$data['comment'] = $this->input->post('message');
-		$data['date_created'] = date('Y-m-d');
+			$kode = $kd_message.sprintf("%02s", $no_urut).$kd_user;
 
-		$this->bro->save('message',$data);
+			$data['message_id'] = $kode;
+			$data['kd_user'] = $this->session->kd_user;
+			$data['comment'] = $this->input->post('message');
+			$data['date_created'] = date('Y-m-d');
 
-		$this->session->set_flashdata('pesan','<div class="alert alert-success alert-message text-center" role="alert">Pesan berhasil dikirim</div>');
-		redirect('landing_page/contact');
+			$this->bro->save('message',$data);
+
+			$this->session->set_flashdata('pesan','<div class="alert alert-success alert-message text-center" role="alert">Pesan berhasil dikirim</div>');
+
+			redirect('landing_page/contact');
+
+		}else {
+
+			$this->session->set_flashdata('pesan','<div class="alert alert-danger alert-message text-center" role="alert">Anda harus login terlebih dahulu !!</div>');
+
+			redirect('landing_page/contact');
+		}
 	}
 
 	public function yt()

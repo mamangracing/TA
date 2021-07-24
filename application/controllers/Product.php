@@ -86,6 +86,7 @@ class Product extends CI_Controller
         $this->form_validation->set_rules('product_name', 'Product Name', 'required');
         $this->form_validation->set_rules('price', 'Price', 'required');
         $this->form_validation->set_rules('description', 'Description', 'required');
+        $this->form_validation->set_rules('product_img','Product_img','required|file[jpg]');
         
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -150,7 +151,7 @@ class Product extends CI_Controller
         $this->form_validation->set_rules('description', 'Description', 'required|trim', array('
             required' => 'Deskripsi harus diisi !'));
 
-        //$this->form_validation->set_rules('product_img','File','required|trim');
+        $this->form_validation->set_rules('product_img','File','required|trim');
 
         if($this->form_validation->run() == false){
 

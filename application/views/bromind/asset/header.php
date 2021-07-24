@@ -91,8 +91,8 @@
                             <img src="<?= base_url('assets/');?>bromind_style/img/icons/shopping_cart.svg" alt="My Cart">
                         </a>
                     </li>
-                    <li class="nav-item dropdown no-arrow">
-                        <?php if($this->session->role_id == 3) {?> 
+                    <?php if($this->session->role_id == 3) {?> 
+                        <li class="nav-item dropdown no-arrow">
                             <!-- <a class="nav-link dropdown-toggle" href="#" id="customerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="mr-2 d-none d-lg-inline small">nama</span>
                             </a> -->
                             <div class="dropdown">
@@ -108,10 +108,15 @@
                             </div>
                             <?php
 
-                            } else { ?>
-                                <a href="<?= base_url('auth/registration');?>" class="nav-link">Daftar</a> <?php 
-                            }
-                        ?>
+                        } else { ?>
+                            <a href="<?= base_url('auth/registration');?>" class="nav-link">Daftar</a>
+                        </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="<?= base_url('auth');?>" class="nav-link">Login</a>
+                        </li>
+                            <?php 
+                        }
+                    ?>
                         <!-- <a href="#" class="nav-link dropdown-toggle float-right" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="<?= base_url('assets/');?>bromind_style/img/icons/publicon_social.svg" class="d-none d-lg-block" alt="Language">
                             <img src="<?= base_url('assets/');?>bromind_style/img/icons/publicon_social_black.svg" class="d-lg-none d-xl-none" alt="Language">English

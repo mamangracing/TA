@@ -48,6 +48,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="status" class="col-sm-3 col-form-label">Status</label>
+                                    <div class="col-sm-9">
+                                        <select name="status" id="status" class="form-control text-center">
+                                            <option value="1">Aktif</option>
+                                            <option value="0">Tidak Aktif</option>
+                                        </select>
+                                        <?= form_error('status', '<small class="text-danger pl-3">', '</small>');?>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <div class="col-sm">
                                         <a href="<?= base_url('website/promo'); ?>" class="btn btn-outline-secondary">Cancel</a>
                                         <button type="submit" class="btn btn-primary float-right">Save</button>

@@ -5,7 +5,7 @@
                         <div class="card p-4 col-lg-8 shadow-sm rounded mx-auto text-dark">
                             <!-- Page Heading -->
                             <h1 class="h3 mb-5 text-gray-800 text-center">Add <?= $title; ?></h1>
-                            <?php echo form_open_multipart('product/addproduct');?>
+                            <form action="<?= base_url ('product/addproduct');?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-sm-3">Picture</div>
                                     <div class="col-sm-9">
@@ -17,6 +17,7 @@
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="product_img" name="product_img">
                                                     <label class="custom-file-label" for="product_img">Choose file</label>
+                                                    <?= form_error('product_img','<small class="text-danger pl-3">','</small>');?>
                                                 </div>
                                             </div>
                                         </div>

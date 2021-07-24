@@ -15,7 +15,7 @@ class Casier extends CI_Controller
     public function index()
     {
         $data['website'] = $this->web_model->get_info();
-        $data['title'] = 'Dashboard Admin';
+        $data['title'] = 'Dashboard Casier';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['report'] = array_reverse($this->report_model->get_report());

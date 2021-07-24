@@ -161,7 +161,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('kd_user');
 
         $this->session->set_flashdata('message', 
-            '<div class="alert alert-success alert-message" role="alert">
+            '<div class="alert alert-success alert-message text-center" role="alert">
                 You have been logged out!
             </div>');
 

@@ -353,6 +353,7 @@ class Website extends CI_Controller
         $this->form_validation->set_rules('promo_name', 'Promo Name', 'required');
         $this->form_validation->set_rules('promo_detail', 'Promo Details', 'required');
         $this->form_validation->set_rules('period', 'Period', 'required');
+        $this->form_validation->set_rules('status','Status', 'required');
         
         // cek jika ada gambar yang akan diupload
         $upload_image = $_FILES['promo_img']['name'];
@@ -382,11 +383,13 @@ class Website extends CI_Controller
         $promo_name = $this->input->post('promo_name');
         $promo_detail = $this->input->post('promo_detail');
         $period = $this->input->post('period');
+        $status = $this->input->post('status');
 
         $data = array(
             'promo_name' => $promo_name,
             'promo_detail' => $promo_detail,
             'period' => $period,
+            'status' => $status
         );
 
         $where = array(
@@ -396,7 +399,7 @@ class Website extends CI_Controller
         $this->web_model->update($where,$data,'promo');
 
         $this->session->set_flashdata('message', 
-        '<div class="alert alert-success" role="alert">
+        '<div class="alert alert-success text-center" role="alert">
             Success to update Our Story!
         </div>');
         redirect('website/promo');
