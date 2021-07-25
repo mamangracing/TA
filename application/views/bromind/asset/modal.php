@@ -51,7 +51,7 @@
 					</div>
 
 					<div class="form-group col-xl-8 btn-orer m-auto">
-						<a class="btn btn-danger form-control" onclick="order();" target="blank">order</a>
+						<a href="https://api.whatsapp.com/send?phone=+6285156081146&text=Haloo saya berniat memesan prodak <?php for($i=0; $i<count($cart); $i++){ echo $cart[$i]->product_name; echo " "; echo $cart[$i]->qty; echo " ";} echo " Rp" . $total_cart->total; ?>" class="btn btn-danger form-control" target="blank">order</a>
 					</div>
 				<?php
 				} else {
@@ -101,8 +101,8 @@
 								<div class="form-group">
 									<div class="row">
 										<div class="col-6 col-xl-6">
-											<?php if($this->session->customer_role == 3) { ?> 
-												<a onclick="order();" class="order-wa btn btn-danger form-control" target="blank">Order Now</a>
+											<?php if($this->session->role_id == 3) { ?> 
+												<a href="https://api.whatsapp.com/send?phone=+6285156081146&text=Haloo saya berniat memesan prodak Roti Bakar Strobery qty 1 harga Rp 15000" class="order-wa btn btn-danger form-control" target="blank">Order Now</a>
 												<?php
 											} else { 
 												?> 

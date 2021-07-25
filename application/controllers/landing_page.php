@@ -72,7 +72,7 @@ class landing_page extends CI_Controller
 		$data['website'] = $this->bro->get('website');
 		$data['product'] = $this->bro->get('product');
 		$data['cart'] = $this->bro->cart($kd_user);
-		$data['total_cart'] = $this->bro->total_cart();
+		$data['total_cart'] = $this->bro->total_cart($kd_user);
 
 		$this->load->view('bromind/index',$data);
 	}
@@ -124,19 +124,28 @@ class landing_page extends CI_Controller
 			$qty = $this->input->get('qty');
 			$user = $this->session->kd_user; 
 
-			$cart = $this->bro->get('cart');
+			$where = array(
+				'product_id' => $product_id,
+				'kd_user' => $this->session->kd_user
+			);
+
+			$cart = $this->bro->get_cart('cart',$where);
 
 			//$no_cart = $this->db->query('SELECT * FROM cart')->result_array();
 			$kd_cart = "CT";
 			
-			
-			if($cart[0]->kd_user == $this->session->kd_user){
+			if($cart != null){
 
 				$data['qty'] = $qty + $cart[0]->qty;
 
 				$product_id = $product_id;
 
-				$this->bro->update('cart',$data,'product_id',$product_id);
+				$where = array(
+					'product_id' => $product_id,
+					'kd_user' => $this->session->kd_user
+				);
+
+				$this->bro->update_cart('cart',$data,$where);
 
 				$this->session->set_flashdata('pesan','<div class="alert alert-message alert-success text-center" role="alert">Berhasil ditambahkan ke keranjang belanja</div>');
 

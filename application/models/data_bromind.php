@@ -7,6 +7,11 @@ class data_bromind extends CI_Model
 		return $this->db->get_where($table, array($where => $data))->result();
 	}
 
+	public function get_cart($table = null, $where = null, $data = null )
+	{
+		return $this->db->get_where($table, $where)->result();
+	}
+
 	public function get($table = null)
 	{
 		return $this->db->get($table)->result();
@@ -20,6 +25,11 @@ class data_bromind extends CI_Model
 	public function update($table = null, $data = null, $where = null, $id = null)
 	{
 		return $this->db->update($table, $data, array($where => $id));
+	}
+
+	public function update_cart($table = null, $data = null, $where = null)
+	{
+		return $this->db->update($table, $data, $where);
 	}
 
 	public function delete($table = null, $where = null, $data = null)
@@ -37,15 +47,13 @@ class data_bromind extends CI_Model
 		return $this->db->query("SELECT * FROM `cart` join product on cart.product_id = product.product_id join user on cart.kd_user = user.kd_user where cart.kd_user ='$kd_user'")->result();
 	}
 
-	public function total_cart()
+	public function total_cart($kd_user)
 	{
-		return $this->db->query(
-			'SELECT sum(price * qty) AS total FROM `cart` inner join product on cart.product_id = product.product_id'
-		)->row();
+		$this->db->select('sum(price * qty) AS total');
+		$this->db->from('cart');
+		$this->db->join('product','cart.product_id = product.product_id');
+		$this->db->where('kd_user',$kd_user);
+		$sql = $this->db->get();
+		return $sql->row();
 	}
-
-	// public function order()
-	// {
-	// 	return $this->db->query('SELECT product_name FROM `cart` inner join product on cart.product_id = product.product_id')->result_array();
-	// }
 }
